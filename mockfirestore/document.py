@@ -66,6 +66,7 @@ class DocumentReference:
     def update(self, data: Dict[str, Any]):
         document = get_by_path(self._data, self._path)
         if document == {}:
+            self.delete()
             raise NotFound('No document to update: {}'.format(self._path))
         document.update(deepcopy(data))
 
